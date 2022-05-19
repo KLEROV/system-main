@@ -2,7 +2,12 @@ import { on } from '@/utils/domUtils';
 import { isServer } from '@/utils/is';
 import type { ComponentPublicInstance, DirectiveBinding, ObjectDirective } from 'vue';
 
-type DocumentHandler = <T extends MouseEvent>(mouseup: T, mousedown: T) => void;
+// type DocumentHandler = <T extends MouseEvent>(mouseup: T, mousedown: T) => void;
+// type DocumentHandler = (mouseup: MouseEvent, mousedown: MouseEvent) => void;
+
+interface DocumentHandler{
+  (mouseup: MouseEvent, mousedown: MouseEvent) : void;
+}
 
 type FlushList = Map<
   HTMLElement,
@@ -33,6 +38,7 @@ function createDocumentHandler(el: HTMLElement, binding: DirectiveBinding): Docu
     // due to current implementation on binding type is wrong the type casting is necessary here
     excludes.push(binding.arg as unknown as HTMLElement);
   }
+  console.log(excludes)
   return function (mouseup, mousedown) {
     const popperRef = (
       binding.instance as ComponentPublicInstance<{

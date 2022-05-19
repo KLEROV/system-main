@@ -34,6 +34,7 @@ const designStore = useDesignSettingStore();
 const isLock = computed(() => useLockscreen.isLock);
 const lockTime = computed(() => useLockscreen.lockTime);
 
+
 /**
  * @type import('naive-ui').GlobalThemeOverrides
  */
@@ -79,108 +80,9 @@ onMounted(() => {
 });
 
 onUnmounted(() => {
+  console.log('onUnmounted');
   document.removeEventListener('mousedown', timekeeping);
 });
-
-
-class control {
-  obj:string;
-  private obj1:string;
-  constructor(public a:string,b:number,c:any){
-    this.obj=a+b+c;
-    this.obj1=this.obj+a+b+c;
-    console.log('这是:'+a,'这是:'+b,'这是:'+c);
-  }
-}
-let d=new control('1',2,3);
-console.log(d.a,d.obj,d.obj1);
-interface name {
-  left:string;
-  top:string;
-  right:string;
-  bottom:string;
-
-}
-interface a0{
-  (k:string,j:number):boolean
-}
-let a1:a0=(k,j)=>{
-  console.log(k,j);
-  return k>j
-}
-console.log(a1(3,7));
-function set(name:name){
-  console.log(name.top,name.left,name.bottom,name.right);
-}
-let name={
-  left:'string0',
-  top:'string1',
-  right:'string2',
-  bottom:'string3'
-}
-set(name);
-// class Button extends control implements selectCtrol{
-//   select(){
-//     console.log('selectCtrol');
-//   }
-// }
-// class textBox extends control{
-//   private state:any;
-//   obj:string;
-//   constructor(obj){
-//     console.log(tobj);
-//   }
-// }
-// function createCtrol(da:selectCtrol,obj:string):textBox{
-//   return 
-// }
-
-
-
-
-
-// class control{
-//   private state:number;
-// }
-
-// interface Counter extends control{
-//   (start:number):string,
-//   interval:number;
-//   reset():any
-// }
-// interface copyCounter extends Counter{
-  
-// }
-// class copyCounterTwo implements Counter{
-//   reset(){
-//     console.log('class copyCounterTwo');
-//   }
-// }
-// function getCounter():copyCounter{
-//   let counter =<copyCounter>function(start:number){
-//     console.log(start);
-//   }
-//   counter.interval=12345;
-//   counter.state=400;
-//   counter.reset=()=>{
-//     console.log('reset');
-//   }
-//   return counter
-// }
-// let c=getCounter();
-// c(10);
-// console.log(c.interval,c.state);
-// c.reset();
-
-
-
-
-
-
-
-
-
-
 
 
 

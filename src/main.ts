@@ -10,7 +10,7 @@ async function bootstrap() {
   const appProvider = createApp(AppProvider);
 
   const app = createApp(App);
-
+  
   // 注册全局常用的 naive-ui 组件
   setupNaive(app);
 

@@ -221,13 +221,16 @@
 
     <!--访问量 | 流量趋势-->
     <VisiTab />
+    
   </div>
 </template>
 <script lang="ts" setup>
+  
   import { ref, onMounted } from 'vue';
   import { getConsoleInfo } from '@/api/dashboard/console';
   import VisiTab from './components/VisiTab.vue';
   import { CountTo } from '@/components/CountTo/index';
+  
   import {
     CaretUpOutlined,
     CaretDownOutlined,
@@ -240,6 +243,7 @@
     TagsOutlined,
     SettingOutlined,
   } from '@vicons/antd';
+import { start } from 'repl';
 
   const loading = ref(true);
   const visits = ref<any>({});
@@ -330,7 +334,76 @@
     orderLarge.value = orderLarge;
     volume.value = volume;
     loading.value = false;
+    interface fun0{
+      name?:string;
+      start():void;
+    }
+    interface fun1{
+      age?:number;
+      
+    }
+    interface fun2{
+      (statu:number):void;
+    }
+    interface fun extends fun0,fun1,fun2{
+
+    }
+    class a{
+
+    }
+    class b{
+
+    }
+    class c extends a{
+
+    }
+    class d implements b{
+
+    }
+    interface e extends a{
+
+    }
+    let obj:fun1={}
+    obj.age=4;
+    console.log(obj);
+    const getFun:fun2=(statu)=>{
+      
+      console.log(statu);
+      const count:fun=(name)=>{
+        console.log(name);
+      }
+      count.age=28;
+      count.start=()=>{
+        console.log('start');
+      }
+      return count;
+    }
+    getFun(404);
+    const testT=<T>(number:number,city:T[]):T[]=>{
+
+      let arr:T[]=[];
+      for(let i=0;i<number;i++){
+        
+        arr[i]=city[i];
+      }
+      return arr;
+    }
+    console.log(testT(6,['bj','cd','hz','xa','nj',28]));
+    enum  Enum{
+      A=678,
+      B=1<<1,//10
+      C=11<<2,//1100
+      D=B|C
+    }
+    let aa=Enum.A;
+    let bb=Enum.D;
+    let cc=Enum.C;
+    let dd=Enum.B;
+    let nameOfA=Enum[aa];
+    console.log(nameOfA,aa,bb,cc,dd);
   });
+  
+
 </script>
 
 <style lang="less" scoped></style>

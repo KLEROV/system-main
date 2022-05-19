@@ -1,14 +1,14 @@
-import { App } from 'vue';
+import { App} from 'vue';
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
 import { RedirectRoute } from '@/router/base';
 import { PageEnum } from '@/enums/pageEnum';
 import { createRouterGuards } from './router-guards';
 
-const modules = import.meta.globEager('./modules/**/*.ts');
-
 const routeModuleList: RouteRecordRaw[] = [];
+const modules=import.meta.globEager('./modules/*.ts');
 
 Object.keys(modules).forEach((key) => {
+ 
   const mod = modules[key].default || {};
   const modList = Array.isArray(mod) ? [...mod] : [mod];
   routeModuleList.push(...modList);
@@ -45,7 +45,7 @@ export const asyncRoutes = [...routeModuleList];
 export const constantRouter: any[] = [LoginRoute, RootRoute, RedirectRoute];
 
 const router = createRouter({
-  history: createWebHashHistory(''),
+  history: createWebHashHistory(),
   routes: constantRouter,
   strict: true,
   scrollBehavior: () => ({ left: 0, top: 0 }),

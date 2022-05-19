@@ -1,5 +1,6 @@
 'use strict'
 const path = require('path')
+console.log(path);
 
 function resolve(dir) {
     return path.join(__dirname, dir)
@@ -7,7 +8,7 @@ function resolve(dir) {
 
 const name = process.env.VUE_APP_TITLE || '若依管理系统' // 网页标题
 
-const port = process.env.port || process.env.npm_config_port || 80 // 端口
+const port = process.env.port || process.env.npm_config_port || 81 // 端口
 
 // vue.config.js 配置说明
 //官方vue.config.js 参考文档 https://cli.vuejs.org/zh/config/#css-loaderoptions
@@ -30,7 +31,7 @@ module.exports = {
         host: '0.0.0.0',
         port: port,
         open: true,
-        proxy: {
+        proxy: { //跨域问题
             // detail: https://cli.vuejs.org/config/#devserver-proxy
             [process.env.VUE_APP_BASE_API]: {
                 target: `http://120.26.61.58:8084/`,
@@ -53,23 +54,23 @@ module.exports = {
     chainWebpack(config) {
         config.plugins.delete('preload') // TODO: need test
         config.plugins.delete('prefetch') // TODO: need test
-
-        // set svg-sprite-loader
-        config.module
-            .rule('svg')
-            .exclude.add(resolve('src/assets/icons'))
-            .end()
-        config.module
-            .rule('icons')
-            .test(/\.svg$/)
-            .include.add(resolve('src/assets/icons'))
-            .end()
-            .use('svg-sprite-loader')
-            .loader('svg-sprite-loader')
-            .options({
-                symbolId: 'icon-[name]'
-            })
-            .end()
+            //以下部分缺失不影响整体的执行，功能未明确
+            // set svg-sprite-loader
+            // config.module
+            //     .rule('svg')
+            //     .exclude.add(resolve('src/assets/icons'))
+            //     .end()
+            // config.module
+            //     .rule('icons')
+            //     .test(/\.svg$/)
+            //     .include.add(resolve('src/assets/icons'))
+            //     .end()
+            //     .use('svg-sprite-loader')
+            //     .loader('svg-sprite-loader')
+            //     .options({
+            //         symbolId: 'icon-[name]'
+            //     })
+            //     .end()
 
         config
             .when(process.env.NODE_ENV !== 'development',
